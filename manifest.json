@@ -1,0 +1,9 @@
+{
+  "manifest_version": 3,
+  "version": "1.1",
+  "name": "Book Marker",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "icon.png"
+  }
+} 

@@ -4,11 +4,21 @@ const inputBtn = document.getElementById('save-btn')
 const ulEl = document.getElementById('ul-el')
 const deleteBtn = document.getElementById('delete-btn')
 const bkMarksFromLocalStorage = JSON.parse(localStorage.getItem('myBookMarks'))
+const tabBtn = document.getElementById('tab-btn');
 
 if (bkMarksFromLocalStorage) {
-  myBookMarks = bkMarksFromLocalStorage;
-  render(myBookMarks);
+  myBookMarks = bkMarksFromLocalStorage
+  render(myBookMarks)
 }
+
+tabBtn.addEventListener("click", function() {
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    myBookMarks.push(tabs[0].url)
+    localStorage.setItem("myBookMarks", JSON.stringify(myBookMarks))
+    render(myBookMarks)
+  })
+
+})
 
 function render(bkmarks) {
   let listItems = ''
